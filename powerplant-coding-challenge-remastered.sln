@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pccr.Api", "powerplant-coding-challenge-remastered\pccr.Api.csproj", "{CD904B33-BB5E-45A4-9821-D5D3A0AA10ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pccr.Api", "pccr.Api\pccr.Api.csproj", "{CD904B33-BB5E-45A4-9821-D5D3A0AA10ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pccr.Domain", "pccr.Domain\pccr.Domain.csproj", "{034D25AE-4E57-4E7B-A207-B4B91BA3E932}"
 EndProject

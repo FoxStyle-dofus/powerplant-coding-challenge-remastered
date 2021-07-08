@@ -17,6 +17,10 @@ Wind has zero cost and will get its percentage of wind and efficiency also from 
 After the calculation, the solution will order the powerplants to use by their cost.
 ### Calculate how much power each powerplant need to produce
 And finally, the solution will calculate how much power each powerplant need to produce according to their minimum and maximum power to reach the load amount.
+The sum of the power produced must be the same than the load.
+If the rest of the power the loads needs is below the minimum power of the next powerplant, we can't use this powerplant.
+=> We can reduce the power used from the previous powerplant to get enough power for the next powerplant minimum power.
+
 ## Source
 ### Engie's Challenge
 https://github.com/gem-spaas/powerplant-coding-challenge

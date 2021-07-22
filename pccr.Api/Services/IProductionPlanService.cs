@@ -10,8 +10,8 @@ namespace powerplant_coding_challenge_remastered.Service
     {
         public ProductionPlan CreateProductionPlan();
         public ProductionPlan CalculateProductionPlan(); 
-        public ProductionPlan OrderPowerplant();
-        public ProductionPlan CalculateCostPowerplant();
+        public void OrderPowerplant();
+        public void CalculateCostPowerplant();
 
     }
 }

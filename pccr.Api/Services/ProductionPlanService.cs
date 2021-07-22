@@ -23,7 +23,7 @@ namespace powerplant_coding_challenge_remastered.Service
         {
             CalculateCostPowerplant();
             OrderPowerplant();
-            CalculateProductionPlan();
+            return CalculateProductionPlan();
         }
 
 
@@ -50,7 +50,7 @@ namespace powerplant_coding_challenge_remastered.Service
                 powerplant.CreatedCo2 = CST_CreatedCo2_WindTurbine;
             }
         }
-        public ProductionPlan CalculateCostPowerplant()
+        public void CalculateCostPowerplant()
         {
             // Calculate cost to generate power for each powerplant
 
@@ -63,7 +63,7 @@ namespace powerplant_coding_challenge_remastered.Service
             
         }
 
-        public ProductionPlan OrderPowerplant()
+        public void OrderPowerplant()
         {
             _payload.Powerplants = _payload.Powerplants.OrderBy(x => x.CostToGeneratePower).ToList();
 
@@ -97,6 +97,7 @@ namespace powerplant_coding_challenge_remastered.Service
                 }
                 productionPlan.ProductionPlanItems.Add(new ProductionPlanItem() { Name = powerplant.Name, P = Math.Round(power, 1) });
             }
+            return productionPlan;
 
 
         }

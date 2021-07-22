@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using powerplant_coding_challenge_remastered.Service;
+using ppcr.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace powerplant_coding_challenge_remastered.Controllers
 
         // POST: api/productionplan
         [HttpPost]
-        public async Task<ActionResult<object>> CalculateProductionPlan()
+        public async Task<ActionResult<ProductionPlan>> CalculateProductionPlan()
         {
-            return Ok();
+            return _productionPlanSerice.CreateProductionPlan();
         }
     }
 }

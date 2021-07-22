@@ -9,6 +9,6 @@ namespace ppcr.Domain.Entities
     {
         public double Load { get; set; }
         public Fuels Fuels { get; set; }
-        public List<Powerplant> PowerPlants { get; set; }
+        public List<Powerplant> Powerplants { get; set; }
     }
 }

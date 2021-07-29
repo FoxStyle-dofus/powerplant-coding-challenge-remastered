@@ -11,6 +11,8 @@ namespace powerplant_coding_challenge_remastered
 {
     public class Program
     {
+
+        public static System.Net.WebSockets.WebSocket wb = null;
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();

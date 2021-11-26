@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using powerplant_coding_challenge_remastered.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace powerplant_coding_challenge_remastered
         {
 
             services.AddControllers();
+            services.AddScoped<IProductionPlanService, ProductionPlanService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "powerplant_coding_challenge_remastered", Version = "v1" });

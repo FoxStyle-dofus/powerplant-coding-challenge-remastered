@@ -12,15 +12,16 @@ namespace powerplant_coding_challenge_remastered.Service
     {
 
         public Payload _payload { get; set; }
-        private const string CST_PowerPlantType_GasFired = "gasfired";
-        private const string CST_PowerPlantType_Turbojet = "turbojet";
-        private const string CST_PowerPlantType_WindTurbine = "windturbine";
-        private const double CST_CreatedCo2_GasFired = 0.3;
-        private const double CST_CreatedCo2_Turbojet = 0.6;
-        private const double CST_CreatedCo2_WindTurbine = 0;
+        private const string PowerPlantType_GasFired = "gasfired";
+        private const string PowerPlantType_Turbojet = "turbojet";
+        private const string PowerPlantType_WindTurbine = "windturbine";
+        private const double CreatedCo2_GasFired = 0.3;
+        private const double CreatedCo2_Turbojet = 0.6;
+        private const double CreatedCo2_WindTurbine = 0;
 
-        public ProductionPlan CreateProductionPlan()
+        public ProductionPlan CreateProductionPlan(Payload payload)
         {
+            _payload = payload;
             CalculateCostPowerplant();
             OrderPowerplant();
             return CalculateProductionPlan();
@@ -30,24 +31,24 @@ namespace powerplant_coding_challenge_remastered.Service
         private void AssignExternalFactorsToPowerPlant(Powerplant powerplant)
         {
             powerplant.Availabilty = 100;
-            if (powerplant.Type.Equals(CST_PowerPlantType_GasFired, StringComparison.OrdinalIgnoreCase))
+            if (powerplant.Type.Equals(PowerPlantType_GasFired, StringComparison.OrdinalIgnoreCase))
             {
                 powerplant.CostFuel = _payload.Fuels.Gas;
                 powerplant.CostCo2 = _payload.Fuels.Co2;
-                powerplant.CreatedCo2 = CST_CreatedCo2_GasFired;
+                powerplant.CreatedCo2 = CreatedCo2_GasFired;
             }
-            else if (powerplant.Type.Equals(CST_PowerPlantType_Turbojet, StringComparison.OrdinalIgnoreCase))
+            else if (powerplant.Type.Equals(PowerPlantType_Turbojet, StringComparison.OrdinalIgnoreCase))
             {
                 powerplant.CostFuel = _payload.Fuels.Kerosine;
                 powerplant.CostCo2 = _payload.Fuels.Co2;
-                powerplant.CreatedCo2 = CST_CreatedCo2_Turbojet;
+                powerplant.CreatedCo2 = CreatedCo2_Turbojet;
             }
-            else if (powerplant.Type.Equals(CST_PowerPlantType_WindTurbine, StringComparison.OrdinalIgnoreCase))
+            else if (powerplant.Type.Equals(PowerPlantType_WindTurbine, StringComparison.OrdinalIgnoreCase))
             {
                 powerplant.Availabilty = _payload.Fuels.Wind;
                 powerplant.CostFuel = 0;
                 powerplant.CostCo2 = 0;
-                powerplant.CreatedCo2 = CST_CreatedCo2_WindTurbine;
+                powerplant.CreatedCo2 = CreatedCo2_WindTurbine;
             }
         }
         public void CalculateCostPowerplant()
@@ -74,22 +75,22 @@ namespace powerplant_coding_challenge_remastered.Service
             ProductionPlan productionPlan = new ProductionPlan(){ ProductionPlanItems = new List<ProductionPlanItem>()};
 
             double powerToProvide = _payload.Load;
-            for (int i = 0; i < _payload.Powerplants.Count; i++)
+            for (int actualPowerplantPosition = 0; actualPowerplantPosition < _payload.Powerplants.Count; actualPowerplantPosition++)
             {
-                Powerplant powerplant = _payload.Powerplants[i];
+                Powerplant powerplant = _payload.Powerplants[actualPowerplantPosition];
                 double power = 0;
                 if (powerToProvide >= powerplant.Pmin)
                 {
                     power = powerToProvide >= powerplant.Pmax * (powerplant.Availabilty / 100) ?
                                powerplant.Pmax * (powerplant.Availabilty / 100) : powerToProvide;
 
-                    double restPower = powerToProvide - power;
-                    if (i + 1 < _payload.Powerplants.Count) 
+                    double remainingPower = powerToProvide - power;
+                    if (actualPowerplantPosition + 1 < _payload.Powerplants.Count) 
                     {
-                        if (restPower > 0 && restPower <= _payload.Powerplants[i + 1].Pmin)
+                        if (remainingPower > 0 && remainingPower <= _payload.Powerplants[actualPowerplantPosition + 1].Pmin)
                         {
-                            if (power >= _payload.Powerplants[i + 1].Pmin - restPower) 
-                                power -= (_payload.Powerplants[i + 1].Pmin - restPower); 
+                            if (power >= _payload.Powerplants[actualPowerplantPosition + 1].Pmin - remainingPower) 
+                                power -= (_payload.Powerplants[actualPowerplantPosition + 1].Pmin - remainingPower); 
                         }
                     }
 

@@ -8,7 +8,7 @@ namespace powerplant_coding_challenge_remastered.Service
 {
     public interface IProductionPlanService
     {
-        public ProductionPlan CreateProductionPlan();
+        public ProductionPlan CreateProductionPlan(Payload payload);
         public ProductionPlan CalculateProductionPlan(); 
         public void OrderPowerplant();
         public void CalculateCostPowerplant();

@@ -23,6 +23,7 @@ namespace powerplant_coding_challenge_remastered
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://localhost:8888/");
                 });
     }
 }

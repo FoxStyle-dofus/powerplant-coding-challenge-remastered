@@ -18,9 +18,9 @@ namespace powerplant_coding_challenge_remastered.Controllers
 
         // POST: api/productionplan
         [HttpPost]
-        public async Task<ActionResult<ProductionPlan>> CalculateProductionPlan()
+        public async Task<ActionResult<ProductionPlan>> CalculateProductionPlan(Payload payload)
         {
-            return _productionPlanSerice.CreateProductionPlan();
+            return _productionPlanSerice.CreateProductionPlan(payload);
         }
     }
 }

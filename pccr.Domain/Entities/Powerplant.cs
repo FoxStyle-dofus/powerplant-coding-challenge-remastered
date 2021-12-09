@@ -1,6 +1,7 @@
 ﻿using pccr.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,6 +20,19 @@ namespace ppcr.Domain.Entities
         public double CreatedCo2 { get; set; }
         public double Availabilty { get; set; }
 
+        public Powerplant(string name, string type)
+        {
+            Name = name;
+            Type = type;
+        }
+
+        public Powerplant() { }
+        public Powerplant(string name, string type, double efficiency)
+        {
+            Name = name;
+            Type = type;
+            Efficiency = efficiency;
+        }
 
         public FuelType GetPowerplanFuelType()
         {

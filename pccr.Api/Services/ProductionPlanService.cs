@@ -28,7 +28,7 @@ namespace powerplant_coding_challenge_remastered.Service
         }
 
 
-        private void AssignExternalFactorsToPowerPlant(Powerplant powerplant)
+        public void AssignExternalFactorsToPowerPlant(Powerplant powerplant)
         {
             powerplant.Availabilty = 100;
             if (powerplant.Type.Equals(PowerPlantType_GasFired, StringComparison.OrdinalIgnoreCase))

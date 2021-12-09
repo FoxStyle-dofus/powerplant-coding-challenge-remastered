@@ -13,14 +13,14 @@ namespace powerplant_coding_challenge_remastered.Controllers
     [ApiController]
     public class ProductionPlanController : ControllerBase
     {
-        private readonly IProductionPlanService _productionPlanSerice;
-        public ProductionPlanController(IProductionPlanService productionPlanService) => _productionPlanSerice = productionPlanService;
+        private readonly IProductionPlanService _productionPlanService;
+        public ProductionPlanController(IProductionPlanService productionPlanService) => _productionPlanService = productionPlanService;
 
         // POST: api/productionplan
         [HttpPost]
         public async Task<ActionResult<ProductionPlan>> CalculateProductionPlan(Payload payload)
         {
-            return _productionPlanSerice.CreateProductionPlan(payload);
+            return _productionPlanService.CreateProductionPlan(payload);
         }
     }
 }

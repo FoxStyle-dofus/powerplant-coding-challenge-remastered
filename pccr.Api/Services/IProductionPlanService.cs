@@ -12,6 +12,7 @@ namespace powerplant_coding_challenge_remastered.Service
         public ProductionPlan CalculateProductionPlan(); 
         public void OrderPowerplant();
         public void CalculateCostPowerplant();
+        public void AssignExternalFactorsToPowerPlant(Powerplant powerplant);
 
     }
 }
